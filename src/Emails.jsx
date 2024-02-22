@@ -1,12 +1,17 @@
+import PorpTypes from "prop-types";
 import Email from "./Email";
-import PropTypes from "prop-types";
 
-function Emails({ emails }) {
+function Emails({ filteredEmails, toggleRead, toggleStar }) {
   return (
     <main className="emails">
       <ul>
-        {emails.map((email, index) => (
-          <Email key={index} email={email} />
+        {filteredEmails.map((email, index) => (
+          <Email
+            key={index}
+            email={email}
+            toggleRead={toggleRead}
+            toggleStar={toggleStar}
+          />
         ))}
       </ul>
     </main>
@@ -14,7 +19,9 @@ function Emails({ emails }) {
 }
 
 Emails.propTypes = {
-  emails: PropTypes.array,
+  filteredEmails: PorpTypes.object,
+  toggleRead: PorpTypes.func,
+  toggleStar: PorpTypes.func,
 };
 
 export default Emails;
